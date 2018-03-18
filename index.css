@@ -23,7 +23,7 @@ a:link,
 a:visited,
 a:hover,
 a:active {
-    color:#ffffff; /*color of your choosing*/
+    color:#ffffff;
     text-decoration: none;
     font-weight: normal;
     border-bottom: 1px dotted;
@@ -103,7 +103,7 @@ font-family: 'Open Sans', sans-serif;
 
 .about {
   font-family: 'PT Serif', serif;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.9;
   letter-spacing: 0.8;
   font-size: 28px;
