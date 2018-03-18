@@ -3,7 +3,9 @@ particlesJS.load('particles-js', 'particles.json', function() {
 });
 
 const onLoad = () => {
-  document.getElementById("main").className += " show";
+  window.setTimeout(() => {
+    document.getElementById("main").className += " show";
+  }, 750);
 }
 
 window.onload = onLoad;
