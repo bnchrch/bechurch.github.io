@@ -3,6 +3,30 @@ html, body {
   height: 100%;
 }
 
+ul {
+  margin: 0;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color:#ffffff; /*color of your choosing*/
+    text-decoration: none;
+    font-weight: normal;
+    border-bottom: 1px dotted;
+}
+
+a:hover {
+  border-bottom: none;
+}
+
+
 body {
 height: 100%;
 font-family: 'Open Sans', sans-serif;
@@ -40,7 +64,7 @@ font-family: 'Open Sans', sans-serif;
 
 .section-header{
   font-weight: 700;
-/* font-family: 'PT Serif', serif; */
+font-family: 'PT Serif', serif;
   font-size: 20px;
   border-bottom: 1px solid white;
   margin-bottom: 1rem;
@@ -54,6 +78,7 @@ font-family: 'Open Sans', sans-serif;
   background-color: #673ab7;
   color: white;
   padding: 2rem;
+  flex: 4;
 }
 
 .about {
