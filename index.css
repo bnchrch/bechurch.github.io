@@ -114,14 +114,14 @@ body {
 #particles-js {
   opacity: 0;
   position: absolute;
-  top: 0;
+  top: 75vh;
   left: 0;
   right: 0;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50%;
   background-color: none;
-  height: 100%;
+  height: 25vh;
   width: 65vw;
   animation: 3s ease 6s normal forwards 1 fadein;
 }
