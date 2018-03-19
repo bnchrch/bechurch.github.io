@@ -164,6 +164,6 @@ body {
 
   #particles-js {
     width: inherit;
-    height: 40vh;
+    top: 30vh;
   }
 }
