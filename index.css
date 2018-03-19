@@ -64,6 +64,10 @@ body {
   padding: 1.5rem;
 }
 
+.section-body{
+  line-height: 1.5;
+}
+
 .flex-center {
   display: flex;
   align-items: center;
@@ -94,11 +98,11 @@ body {
 }
 
 .show {
-  padding: 2rem;
   opacity: 1;
   flex: 4;
   width: inherit;
   visibility: visible;
+  padding: 1.3rem 2rem;
 }
 
 .about  {
