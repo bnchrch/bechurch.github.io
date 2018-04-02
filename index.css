@@ -61,7 +61,7 @@ body {
   display: flex;
   flex: 6;
   flex-direction: column;
-  padding: 1.5rem;
+  padding: 1.2rem 1.5rem;
 }
 
 .section-body{
