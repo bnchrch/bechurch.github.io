@@ -86,6 +86,10 @@ body {
   flex: 8;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .main {
   background-color: #673ab7;
   color: white;
@@ -95,6 +99,7 @@ body {
   width: 1px;
   transition: all 2s ease;
   opacity: 0;
+  height: 100vh
 }
 
 .show {
@@ -128,6 +133,11 @@ body {
   height: 25vh;
   width: 65vw;
   animation: 3s ease 6s normal forwards 1 fadein;
+}
+
+.content {
+  overflow-y: auto;
+  height: 100vh;
 }
 
 .content div.section {
@@ -164,6 +174,15 @@ body {
   .about {
     font-size: 18px;
     width: 85%;
+  }
+
+  .content {
+    overflow-y: unset;
+    height: inherit;
+  }
+
+  .main {
+    height: inherit;
   }
 
   #particles-js {
