@@ -18,18 +18,18 @@ li {
   margin-bottom: 0.5rem;
 }
 
-a,
-a:link,
-a:visited,
-a:hover,
-a:active {
+.container a,
+.container a:link,
+.container a:visited,
+.container a:hover,
+.container a:active {
   color:#ffffff;
   text-decoration: none;
   font-weight: normal;
   border-bottom: 1px dotted;
 }
 
-a:hover {
+.container a:hover {
   border-bottom: none;
 }
 
