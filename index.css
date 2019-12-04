@@ -161,6 +161,9 @@ body {
 .content div.section:nth-child(6) {
   animation-delay: 5s;
 }
+.content div.section:nth-child(7) {
+  animation-delay: 5.5s;
+}
 
 @media (max-width: 680px) {
   .container {
