@@ -1,0 +1,9 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": {
+            "appID": "com.cerve.cerveapp",
+            "paths": "*"
+        }
+    }
+}
