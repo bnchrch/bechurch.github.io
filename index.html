@@ -1,167 +1,769 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-      <link rel="icon" href="favicon.ico" type="image/x-icon">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ben Church — Engineer</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135503975-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="author" content="Ben Church">
+      gtag('config', 'UA-135503975-1');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      <title>Ben Church</title>
+        :root {
+            --text-primary: #000;
+            --text-secondary: #666;
+            --bg: #fff;
+            --accent: #0066ff;
+            --max-width: 680px;
+            --spacing: 2.5rem;
+            --line-height: 1.65;
+        }
 
-      <script type="text/javascript" src="particles.min.js"></script>
-      <script type="text/javascript" src="index.js"></script>
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135503975-1"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+        /* Color Themes */
+        [data-theme="blue"] {
+            --accent: #0066ff;
+            --bg: #f0f4ff;
+            --text-primary: #001440;
+            --text-secondary: #4066a5;
+        }
 
-        gtag('config', 'UA-135503975-1');
-      </script>
+        [data-theme="green"] {
+            --accent: #00a86b;
+            --bg: #f0faf5;
+            --text-primary: #002618;
+            --text-secondary: #2d6a4f;
+        }
 
-      <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,700|Lato:400,700" rel="stylesheet">
-      <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-    <div class="flex-container container">
-      <div class="flex-half flex-center sideBar">
-        <div class="about">
-          Hi! My name is Ben. 👋<br>
-          I'm a Remote Engineer based in Los Angeles.<br>
-          I've led several engineering teams & worked with some awesome companies including Uber, Facebook & Lonely Planet.
-        </div>
-      </div>
-      <div id="main" class="flex-half flex-center main">
-        <div class="content">
+        [data-theme="purple"] {
+            --accent: #6b5b95;
+            --bg: #faf8fc;
+            --text-primary: #2d1b40;
+            --text-secondary: #5e4a72;
+        }
 
-            <div class="section">
-              <div class="section-header">What I'm up to</div>
-              <div class="section-body">I'm currently learning <a href="https://www.kaiserjiujitsu.com/">Jiu Jitsu</a>, and working to build and market the next generation of amazing fintech companies at <a href="https://infiniteinterface.com">Infinite Interface.</a></div>
+        [data-theme="orange"] {
+            --accent: #ff6b35;
+            --bg: #fff8f5;
+            --text-primary: #3d1408;
+            --text-secondary: #a04428;
+        }
+
+        [data-theme="black"] {
+            --accent: #000;
+            --bg: #fff;
+            --text-primary: #000;
+            --text-secondary: #666;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            line-height: var(--line-height);
+            color: var(--text-primary);
+            background: var(--bg);
+            padding: var(--spacing);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect x="0" y="0" width="20" height="20" fill="black"/><rect x="2" y="2" width="16" height="16" fill="white"/><rect x="4" y="4" width="12" height="12" fill="black"/></svg>') 10 10, auto;
+        }
+
+        a, button, .audience-option, .theme-dot {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect x="0" y="0" width="20" height="20" fill="black"/><rect x="2" y="2" width="16" height="16" fill="white"/><rect x="4" y="4" width="12" height="12" fill="black"/><rect x="6" y="6" width="8" height="8" fill="white"/></svg>') 10 10, pointer;
+        }
+
+        /* Dotted Background Texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: -1;
+            transition: background-position 0.3s ease;
+        }
+
+        /* Interactive Dot Grid */
+        .dot-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: currentColor;
+            opacity: 0.1;
+            border-radius: 50%;
+            transition: transform 0.3s ease-out;
+        }
+
+        /* Container */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            margin-bottom: calc(var(--spacing) * 1.5);
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        h1 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+        }
+
+        /* Controls Section */
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Audience Selector */
+        .audience-selector {
+            display: flex;
+            gap: 0.75rem;
+            margin-right: 1rem;
+        }
+
+        .audience-option {
+            font-family: inherit;
+            font-size: 0.875rem;
+            padding: 0;
+            border: none;
+            background: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .audience-option:hover {
+            color: var(--text-primary);
+        }
+
+        .audience-option.active {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .audience-option:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.2s ease;
+        }
+
+        .audience-option.active:after {
+            width: 100%;
+        }
+
+        /* Theme Picker */
+        .theme-picker {
+            display: flex;
+            gap: 0.5rem;
+            position: relative;
+            padding: 0.25rem;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+        }
+
+        .theme-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .theme-dot:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-dot.active {
+            border-color: var(--text-primary);
+            box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--text-primary);
+        }
+
+        .theme-dot[data-color="blue"] { background: linear-gradient(135deg, #0066ff, #004de6); }
+        .theme-dot[data-color="green"] { background: linear-gradient(135deg, #00a86b, #008855); }
+        .theme-dot[data-color="purple"] { background: linear-gradient(135deg, #6b5b95, #4a3d6d); }
+        .theme-dot[data-color="orange"] { background: linear-gradient(135deg, #ff6b35, #e55100); }
+        .theme-dot[data-color="black"] { background: linear-gradient(135deg, #000, #333); }
+
+        /* Main Content */
+        main {
+            margin-bottom: calc(var(--spacing) * 3);
+        }
+
+        .intro {
+            font-size: 2rem;
+            font-weight: 400;
+            line-height: 1.3;
+            letter-spacing: -0.03em;
+            margin-bottom: calc(var(--spacing) * 2);
+        }
+
+        .intro .highlight {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+            text-decoration-color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: calc(var(--spacing) * 2);
+        }
+
+        section h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        section p,
+        section ul {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        section li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Links */
+        a {
+            color: var(--text-primary);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        p a,
+        li a {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 2px;
+            text-decoration-color: var(--accent);
+        }
+
+        /* Code Inline */
+        .code {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 0.875em;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            color: var(--accent);
+        }
+
+        /* Text utilities */
+        .text-secondary {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #eee;
+            padding-top: var(--spacing);
+            margin-top: calc(var(--spacing) * 3);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            :root {
+                --spacing: 1.5rem;
+            }
+
+            .intro {
+                font-size: 1.5rem;
+            }
+
+            .controls-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .audience-selector {
+                gap: 0.5rem;
+                margin-right: 0;
+            }
+            
+            .audience-option {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Subtle animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeIn 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+        section:nth-child(5) { animation-delay: 0.5s; }
+        section:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body data-theme="blue">
+    <div class="dot-grid" id="dotGrid"></div>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Ben Church <span class="subtitle">— <span id="role-text">Engineer</span></span></h1>
             </div>
+        </header>
 
-            <div class="section">
-              <div class="section-header">I'm Interested in</div>
-              <div class="section-body">Practical functional programming with Elixir, compositional interfaces, and conversational UI.</div>
+        <main>
+            <div class="controls-section">
+                <div class="audience-selector">
+                    <button class="audience-option active" data-audience="anyone">Everyone</button>
+                    <button class="audience-option" data-audience="recruiters">Recruiters</button>
+                    <button class="audience-option" data-audience="directors">Directors</button>
+                    <button class="audience-option" data-audience="engineers">Engineers</button>
+                    <button class="audience-option" data-audience="founders">Founders</button>
+                    <button class="audience-option" data-audience="wife">My Wife</button>
+                </div>
+                <div class="theme-picker" role="group" aria-label="Color theme picker">
+                    <div class="theme-dot active" data-color="blue" title="Blue theme"></div>
+                    <div class="theme-dot" data-color="green" title="Green theme"></div>
+                    <div class="theme-dot" data-color="purple" title="Purple theme"></div>
+                    <div class="theme-dot" data-color="orange" title="Orange theme"></div>
+                    <div class="theme-dot" data-color="black" title="Black theme"></div>
+                </div>
             </div>
+            
+            <p class="intro" id="intro-text">
+                Hello there, I'm a <span class="highlight">senior software engineer</span> 
+                who builds products with care and craftsmanship. Currently working at 
+                <span class="highlight">Infinite Interface</span> to create the next 
+                generation of AI products.
+            </p>
 
-            <div class="section">
-              <div class="section-header">I've been Involved with</div>
-              <div class="section-body">
-                  <ul>
-                    <li>
-                        <a href="https://about.fb.com/news/2017/04>/messenger-f8/">
-                          Facebook Messenger
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.lonelyplanet.com/trips">
-                          Trips by Lonely Planet
-                        </a>
-                    </li>
-                  </li>
-                  </ul>
-              </div>
-            </div>
+            <section>
+                <h2>What I'm up to</h2>
+                <p>
+                    I'm currently learning <a href="https://www.kaiserjiujitsu.com/" target="_blank">Jiu Jitsu</a>, 
+                    and working to build and market amazing AI products at 
+                    <a href="https://infiniteinterface.com" target="_blank">Infinite Interface</a>. 
+                    I've previously led engineering teams at companies including Airbyte, Uber, Facebook, and Lonely Planet.
+                </p>
+            </section>
 
-            <div class="section">
-              <div class="section-header">I've Written</div>
-              <div class="section-body">
-                  <ul>
-                    <li>
-                      <a href="https://by.ben.church/Get-notified-of-user-signups-and-plan-changes-automatically-using-Postgres-and-Phoenix-PubSub/">
-                        Simple Notifications with Phoenix
-                      </a>
-                  </li>
-                    <li>
-                        <a href="https://by.ben.church/Writing-a-Reverse-Proxy-in-just-one-line-with-Go/">
-                          Writing a Reverse Proxy in Go
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://by.ben.church/Setting-up-apollo-link-state-for-Multiple-Stores/">
-                          Setting up apollo-link-state for multiple stores
-                        </a>
-                    </li>
-                    <li>
-                      <a href="https://by.ben.church/How-to-read-and-write-Mindful-Minutes-from-iOS's-HealthKit-with-Swift/">
-                        Reading and Writing from Apple's HealthKit
-                      </a>
-                  </li>
-                  <li>
-                    <a href="https://by.ben.church">
-                      And many more...
-                    </a>
-                </li>
-                    </ul>
-              </div>
-            </div>
-
-            <div class="section">
-              <div class="section-header">I've Spoken at</div>
-              <div class="section-body">
-                  <ul>
-                  <li>
-                      <a href="https://youtu.be/GTP0llRvEmE?t=490">
-                        The Big Elixir, New Orleans (2018)
-                      </a>
-                  </li>
-                    <li>
-                      <a href="https://youtu.be/nSi0-Dfitso?t=13345">
-                        Diffusion, Berlin (2019)
-                      </a>
-                  </li>
-                  <li>
-                      <a href="https://youtu.be/U_g06VqdKUc?si=ELaB4YFmBXXrYWLc">
-                        Scale By The Bay, Oakland (2023)
-                      </a>
-                  </li>
-                  <li>
-                      <a href="https://youtu.be/fvBjy-j8ehE?si=fB0OKe0-42tSk3XO">
-                        Move(data), San Francisco (2025)
-                      </a>
-                  </li>
+            <section>
+                <h2>Interests</h2>
+                <ul>
+                    <li>Practical functional programming with Elixir</li>
+                    <li>Compositional interfaces</li>
+                    <li>Conversational UI</li>
+                    <li>Product-oriented development</li>
+                    <li>User stories and human-centered design</li>
                 </ul>
-              </div>
-            </div>
+            </section>
 
+            <section>
+                <h2>Technical</h2>
+                <p>
+                    I'm <span class="code">{highly_technical}</span> with experience across 
+                    multiple paradigms and languages. I believe in choosing the right tool 
+                    for the job and writing code that humans can understand.
+                </p>
+                <div class="skills-grid">
+                    <span class="skill">TypeScript</span>
+                    <span class="skill">Python</span>
+                    <span class="skill">C#</span>
+                    <span class="skill">Elixir</span>
+                    <span class="skill">Haskell</span>
+                    <span class="skill">Java</span>
+                    <span class="skill">Kotlin</span>
+                    <span class="skill">Swift</span>
+                    <span class="skill">Objective-C</span>
+                    <span class="skill">GraphQL</span>
+                    <span class="skill">Elm</span>
+                    <span class="skill">Next.js</span>
+                    <span class="skill">React</span>
+                    <span class="skill">Node.js</span>
+                    <span class="skill">PostgreSQL</span>
+                </div>
+            </section>
 
-            <div class="section">
-                <div class="section-header">I'm Reading</div>
-                <div class="section-body">
-                  <ul>
-                    <li>
-                        <a href="https://www.amazon.ca/Thinking-Systems-Primer-Donella-Meadows/dp/1603580557/">
-                          Thinking in Systems
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.amazon.ca/Start-Why-Leaders-Inspire-Everyone-ebook/dp/B002Q6XUE4/">
-                          Start With Why
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.amazon.ca/Principles-Life-Work-Ray-Dalio-ebook/dp/B071CTK28D/">
-                          Principles
-                        </a>
-                    </li>
+            <section>
+                <h2>Writing</h2>
+                <ul>
+                    <li><a href="https://by.ben.church/Get-notified-of-user-signups-and-plan-changes-automatically-using-Postgres-and-Phoenix-PubSub/" target="_blank">Simple Notifications with Phoenix</a></li>
+                    <li><a href="https://by.ben.church/Writing-a-Reverse-Proxy-in-just-one-line-with-Go/" target="_blank">Writing a Reverse Proxy in Go</a></li>
+                    <li><a href="https://by.ben.church/Setting-up-apollo-link-state-for-Multiple-Stores/" target="_blank">Setting up apollo-link-state for multiple stores</a></li>
+                    <li><a href="https://by.ben.church/How-to-read-and-write-Mindful-Minutes-from-iOS's-HealthKit-with-Swift/" target="_blank">Reading and Writing from Apple's HealthKit</a></li>
+                    <li><a href="https://by.ben.church" target="_blank">And many more...</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Speaking</h2>
+                <ul>
+                    <li><a href="https://youtu.be/GTP0llRvEmE?t=490" target="_blank">The Big Elixir, New Orleans (2018)</a></li>
+                    <li><a href="https://youtu.be/nSi0-Dfitso?t=13345" target="_blank">Diffusion, Berlin (2019)</a></li>
+                    <li><a href="https://youtu.be/U_g06VqdKUc?si=ELaB4YFmBXXrYWLc" target="_blank">Scale By The Bay, Oakland (2023)</a></li>
+                    <li><a href="https://youtu.be/fvBjy-j8ehE?si=fB0OKe0-42tSk3XO" target="_blank">Move(data), San Francisco (2025)</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Impactful Projects</h2>
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=Mw9wkYzXUQk" target="_blank">Airbyte AI Connector Builder</a></li>
+                    <li><a href="https://about.fb.com/news/2017/04/messenger-f8/" target="_blank">Facebook Messenger</a></li>
+                    <li><a href="https://www.lonelyplanet.com/trips" target="_blank">Trips by Lonely Planet</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Reading</h2>
+                <ul>
+                    <li><a href="https://www.amazon.ca/Thinking-Systems-Primer-Donella-Meadows/dp/1603580557/" target="_blank">Thinking in Systems</a></li>
+                    <li><a href="https://www.amazon.ca/Start-Why-Leaders-Inspire-Everyone-ebook/dp/B002Q6XUE4/" target="_blank">Start With Why</a></li>
+                    <li><a href="https://www.amazon.ca/Principles-Life-Work-Ray-Dalio-ebook/dp/B071CTK28D/" target="_blank">Principles</a></li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div>© 2024 Ben Church</div>
+                <div class="social-links">
+                    <a href="https://github.com/bnchrch" target="_blank">GitHub</a>
+                    <a href="https://www.linkedin.com/in/bnchrch/" target="_blank">LinkedIn</a>
+                    <a href="https://twitter.com/bnchrch" target="_blank">Twitter</a>
                 </div>
             </div>
-
-            <div class="section">
-                <div class="section-header">Seek me out</div>
-                <div class="section-body">
-                  I'm on <a href="https://github.com/bnchrch">Github</a>, <a href="https://www.linkedin.com/in/bnchrch/">LinkedIn</a>, <a href="https://twitter.com/bnchrch">Twitter</a>, <a href="https://www.producthunt.com/@bnchrch/made">Product Hunt</a>, and <a href="https://medium.com/@bnchrch">Medium</a>. You can also <a class="mailtoui" href="mailto:email@ben.church">send me an email</a> if thats your thing.
-                </div>
-            </div>
-            <div id="particles-js"></div>
-
-        </div>
-      </div>
+        </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/mailtoui@1.0.1/dist/mailtoui-min.js"></script>
-  </body>
+
+    <script>
+        // Theme Picker
+        const themeDots = document.querySelectorAll('.theme-dot');
+        const body = document.body;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('preferred-theme') || 'blue';
+        body.setAttribute('data-theme', savedTheme);
+        updateActiveDot(savedTheme);
+
+        themeDots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const color = this.getAttribute('data-color');
+                body.setAttribute('data-theme', color);
+                localStorage.setItem('preferred-theme', color);
+                updateActiveDot(color);
+            });
+        });
+
+        function updateActiveDot(color) {
+            themeDots.forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.getAttribute('data-color') === color) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        // Audience Selector
+        const audienceOptions = document.querySelectorAll('.audience-option');
+        const roleText = document.getElementById('role-text');
+        const introText = document.getElementById('intro-text');
+
+        const audienceContent = {
+            anyone: {
+                role: 'Engineer',
+                intro: `Hello there, I'm a <span class="highlight">senior software engineer</span> 
+                who builds products with care and craftsmanship. Currently working at 
+                <span class="highlight">Infinite Interface</span> to create the next 
+                generation of AI products.`
+            },
+            recruiters: {
+                role: 'Senior Engineer',
+                intro: `I'm a <span class="highlight">senior software engineer</span> with 10+ years 
+                of experience leading teams at scale. I've shipped products at 
+                <span class="highlight">Airbyte, Uber, Facebook, and Lonely Planet</span>. 
+                Currently building AI products at Infinite Interface.`
+            },
+            directors: {
+                role: 'Engineering Leader',
+                intro: `I'm an <span class="highlight">engineering leader</span> who builds high-performing 
+                teams and scalable systems. I've led cross-functional teams at 
+                <span class="highlight">Metalab, Airbyte, and Future Pet</span>, shipping products that serve 
+                millions while mentoring engineers and driving technical strategy.`
+            },
+            engineers: {
+                role: 'Builder',
+                intro: `Hey! I'm a <span class="highlight">fellow engineer</span> who loves building 
+                elegant solutions to complex problems. I work across the stack with a love for 
+                <span class="highlight">realtime systems and Elixir</span>.`
+            },
+            founders: {
+                role: 'Product Engineer',
+                intro: `I'm a <span class="highlight">product-minded engineer</span> who ships fast 
+                and iterates faster. I've shipped <span class="highlight">20+ products</span> for companies 
+                big (Airbyte, Facebook, Uber, Lonely Planet) and small. Currently helping 
+                founders build AI products at Infinite Interface.`
+            },
+            wife: {
+                role: 'Your Husband ❤️',
+                intro: `Hi love! This is my professional site where I pretend to be serious about 
+                <span class="highlight">computers and stuff</span>.`
+            }
+        };
+
+        // Load saved audience preference
+        const savedAudience = localStorage.getItem('preferred-audience') || 'anyone';
+        updateContent(savedAudience);
+        updateActiveAudience(savedAudience);
+
+        audienceOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const audience = this.getAttribute('data-audience');
+                localStorage.setItem('preferred-audience', audience);
+                updateContent(audience);
+                updateActiveAudience(audience);
+            });
+        });
+
+        function updateActiveAudience(audience) {
+            audienceOptions.forEach(option => {
+                option.classList.remove('active');
+                if (option.getAttribute('data-audience') === audience) {
+                    option.classList.add('active');
+                }
+            });
+        }
+
+        function updateContent(audience) {
+            const content = audienceContent[audience];
+            roleText.textContent = content.role;
+            introText.innerHTML = content.intro;
+            
+            // Add a subtle animation
+            introText.style.opacity = '0';
+            setTimeout(() => {
+                introText.style.transition = 'opacity 0.3s ease';
+                introText.style.opacity = '1';
+            }, 100);
+        }
+
+        // Smooth scroll for any future anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Interactive Dot Grid
+        const dotGrid = document.getElementById('dotGrid');
+        const dotSpacing = 20;
+        const dotRadius = 120; // Increased radius of effect
+        const dots = [];
+
+        // Create dot grid
+        function createDotGrid() {
+            const width = window.innerWidth;
+            const height = document.documentElement.scrollHeight; // Full document height
+            const cols = Math.ceil(width / dotSpacing);
+            const rows = Math.ceil(height / dotSpacing);
+
+            dotGrid.innerHTML = '';
+            dots.length = 0;
+
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'dot';
+                    dot.style.left = `${col * dotSpacing}px`;
+                    dot.style.top = `${row * dotSpacing}px`;
+                    dot.dataset.originalX = col * dotSpacing;
+                    dot.dataset.originalY = row * dotSpacing;
+                    dotGrid.appendChild(dot);
+                    dots.push(dot);
+                }
+            }
+        }
+
+        // Update dots on mouse move
+        function handleMouseMove(e) {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            const scrollY = window.scrollY;
+
+            dots.forEach(dot => {
+                const dotX = parseFloat(dot.dataset.originalX);
+                const dotY = parseFloat(dot.dataset.originalY);
+                
+                // Calculate distance accounting for viewport position
+                const distance = Math.sqrt(
+                    Math.pow(mouseX - dotX, 2) + 
+                    Math.pow(mouseY - (dotY - scrollY), 2)
+                );
+
+                if (distance < dotRadius) {
+                    const force = (1 - distance / dotRadius) * 20;
+                    const angle = Math.atan2((dotY - scrollY) - mouseY, dotX - mouseX);
+                    const pushX = Math.cos(angle) * force;
+                    const pushY = Math.sin(angle) * force;
+                    
+                    dot.style.transform = `translate(${pushX}px, ${pushY}px)`;
+                } else {
+                    dot.style.transform = 'translate(0, 0)';
+                }
+            });
+        }
+
+        // Initialize dot grid
+        createDotGrid();
+
+        // Add mouse move listener with throttling
+        let mouseTimeout;
+        document.addEventListener('mousemove', (e) => {
+            if (!mouseTimeout) {
+                mouseTimeout = setTimeout(() => {
+                    handleMouseMove(e);
+                    mouseTimeout = null;
+                }, 16); // ~60fps
+            }
+        });
+
+        // Recreate grid on resize
+        window.addEventListener('resize', () => {
+            createDotGrid();
+        });
+
+        // Reset dots when mouse leaves
+        document.addEventListener('mouseleave', () => {
+            dots.forEach(dot => {
+                dot.style.transform = 'translate(0, 0)';
+            });
+        });
+    </script>
+</body>
 </html>
