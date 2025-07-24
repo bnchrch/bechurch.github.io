@@ -7,11 +7,11 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135503975-1"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-135503975-1');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    
+    gtag('config', 'UA-135503975-1');
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
@@ -104,13 +104,13 @@
 
         /* Interactive Dot Grid */
         .dot-grid {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            overflow: hidden;
+            overflow: visible;
             pointer-events: none;
         }
 
@@ -424,7 +424,7 @@
         section:nth-child(6) { animation-delay: 0.6s; }
     </style>
 </head>
-<body data-theme="blue">
+<body data-theme="black">
     <div class="dot-grid" id="dotGrid"></div>
     <div class="container">
         <header>
@@ -444,16 +444,16 @@
                     <button class="audience-option" data-audience="wife">My Wife</button>
                 </div>
                 <div class="theme-picker" role="group" aria-label="Color theme picker">
-                    <div class="theme-dot active" data-color="blue" title="Blue theme"></div>
+                    <div class="theme-dot" data-color="blue" title="Blue theme"></div>
                     <div class="theme-dot" data-color="green" title="Green theme"></div>
                     <div class="theme-dot" data-color="purple" title="Purple theme"></div>
                     <div class="theme-dot" data-color="orange" title="Orange theme"></div>
-                    <div class="theme-dot" data-color="black" title="Black theme"></div>
+                    <div class="theme-dot active" data-color="black" title="Black theme"></div>
                 </div>
             </div>
             
             <p class="intro" id="intro-text">
-                Hello there, I'm a <span class="highlight">senior software engineer</span> 
+                Hello there, I'm a <span class="highlight">principal software engineer</span> 
                 who builds products with care and craftsmanship. Currently working at 
                 <span class="highlight">Infinite Interface</span> to create the next 
                 generation of AI products.
@@ -564,7 +564,7 @@
         const body = document.body;
 
         // Load saved theme
-        const savedTheme = localStorage.getItem('preferred-theme') || 'blue';
+        const savedTheme = localStorage.getItem('preferred-theme') || 'black';
         body.setAttribute('data-theme', savedTheme);
         updateActiveDot(savedTheme);
 
@@ -594,14 +594,14 @@
         const audienceContent = {
             anyone: {
                 role: 'Engineer',
-                intro: `Hello there, I'm a <span class="highlight">senior software engineer</span> 
+                intro: `Hello there, I'm a <span class="highlight">principal software engineer</span> 
                 who builds products with care and craftsmanship. Currently working at 
                 <span class="highlight">Infinite Interface</span> to create the next 
                 generation of AI products.`
             },
             recruiters: {
-                role: 'Senior Engineer',
-                intro: `I'm a <span class="highlight">senior software engineer</span> with 10+ years 
+                role: 'Principal Engineer',
+                intro: `I'm a <span class="highlight">principal software engineer</span> with 10+ years 
                 of experience leading teams at scale. I've shipped products at 
                 <span class="highlight">Airbyte, Uber, Facebook, and Lonely Planet</span>. 
                 Currently building AI products at Infinite Interface.`
@@ -615,15 +615,17 @@
             },
             engineers: {
                 role: 'Builder',
-                intro: `Hey! I'm a <span class="highlight">fellow engineer</span> who loves building 
-                elegant solutions to complex problems. I work across the stack with a love for 
-                <span class="highlight">realtime systems and Elixir</span>.`
+                intro: `Hey! I'm an <span class="highlight">engineer</span>, just like you, who lives on 
+                the ability to create something from nothing. Along the way I've picked up tools, 
+                technologies and opinions that often have me working across the stack and probably 
+                talking far too much about the good lord <span class="highlight">pragmatic functional programming</span>.`
             },
             founders: {
                 role: 'Product Engineer',
-                intro: `I'm a <span class="highlight">product-minded engineer</span> who ships fast 
-                and iterates faster. I've shipped <span class="highlight">20+ products</span> for companies 
-                big (Airbyte, Facebook, Uber, Lonely Planet) and small. Currently helping 
+                intro: `I'm a <span class="highlight">product-minded engineer</span> who loves to help 
+                define the destination, and work back to the best first island to land on along the way. 
+                I've shipped <span class="highlight">20+ products</span> for companies big 
+                (Airbyte, Facebook, Uber, Lonely Planet) and small. Currently, I'm helping 
                 founders build AI products at Infinite Interface.`
             },
             wife: {
@@ -753,9 +755,27 @@
             }
         });
 
-        // Recreate grid on resize
+        // Recreate grid on resize or content change
+        let resizeTimeout;
         window.addEventListener('resize', () => {
-            createDotGrid();
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                createDotGrid();
+            }, 250);
+        });
+        
+        // Also recreate when content changes (which might change document height)
+        const observer = new MutationObserver(() => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                createDotGrid();
+            }, 250);
+        });
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            characterData: true
         });
 
         // Reset dots when mouse leaves
